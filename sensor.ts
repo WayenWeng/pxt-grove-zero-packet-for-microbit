@@ -129,7 +129,7 @@ namespace sensor
      * @param event type of gesture to detect
      * @param handler code to run
      */
-    //% blockId=sensor_gesture_create_event block="on Gesture|%event"
+    //% blockId=sensor_gesture_create_event block="on gesture|%event"
     //% weight=97 blockGap=8
     //% help=
     export function onGesture(event: GestureEvent, handler: Action) {
@@ -142,7 +142,7 @@ namespace sensor
      * @param event type of encoder to detect
      * @param handler code to run
      */
-    //% blockId=sensor_encoder_create_event block="on Encoder|%event"
+    //% blockId=sensor_encoder_create_event block="on encoder|%event"
     //% weight=96 blockGap=8
     //% help=
     export function onEncoder(event: EncoderEvent, handler: Action) {
@@ -155,7 +155,7 @@ namespace sensor
      * @param event type of liner to detect
      * @param handler code to run
      */
-    //% blockId=sensor_liner_create_event block="on Liner|%event"
+    //% blockId=sensor_liner_create_event block="on liner|%event"
     //% weight=95 blockGap=8
     //% help=
     export function onLiner(event: LinerEvent, handler: Action) {
@@ -168,7 +168,7 @@ namespace sensor
      * @param event type of color to detect
      * @param handler code to run
      */
-    //% blockId=sensor_color_create_event block="on Color|%event"
+    //% blockId=sensor_color_create_event block="on color|%event"
     //% weight=94 blockGap=8
     //% help=
     export function onColor(event: ColorEvent, handler: Action) {
@@ -179,7 +179,7 @@ namespace sensor
     /**
      * See if the sound sensor detected a loud sound.
      */
-    //% blockId=sensor_is_sound_event_generate block="Loud sound was triggered"
+    //% blockId=sensor_is_sound_event_generate block="loud sound was triggered"
     //% weight=100 blockGap=8
     //% advanced=true
     //% help=
@@ -195,7 +195,7 @@ namespace sensor
      * @param type of gesture device
      * @param event of gesture device
      */
-    //% blockId=sensor_is_gesture_event_generate block="Gesture|%event|was triggered"
+    //% blockId=sensor_is_gesture_event_generate block="gesture|%event|was triggered"
     //% weight=99 blockGap=8
     //% advanced=true
     //% help=
@@ -212,7 +212,7 @@ namespace sensor
      * @param type of encoder device
      * @param event of encoder device
      */
-    //% blockId=sensor_is_encoder_event_generate block="Encoder|%event|was triggered"
+    //% blockId=sensor_is_encoder_event_generate block="encoder|%event|was triggered"
     //% weight=98 blockGap=8
     //% advanced=true
     //% help=
@@ -229,7 +229,7 @@ namespace sensor
      * @param type of liner device
      * @param event of liner device
      */
-    //% blockId=sensor_is_liner_event_generate block="Liner|%event|was triggered"
+    //% blockId=sensor_is_liner_event_generate block="liner|%event|was triggered"
     //% weight=97 blockGap=8
     //% advanced=true
     //% help=
@@ -246,7 +246,7 @@ namespace sensor
      * @param type of color device
      * @param event of color device
      */
-    //% blockId=sensor_is_color_event_generate block="Color|%event|was triggered"
+    //% blockId=sensor_is_color_event_generate block="color|%event|was triggered"
     //% weight=96 blockGap=8
     //% advanced=true
     //% help=
