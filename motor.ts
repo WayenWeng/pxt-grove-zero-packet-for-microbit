@@ -28,7 +28,7 @@ namespace motor
     /**
      * Read the servo degree.
      */
-    //% blockId=motor_set_servo_move block="servo degree"
+    //% blockId=motor_read_servo_degree block="servo degree"
     //% weight=100 blockGap=8
     //% help=
     export function readServo(): number
