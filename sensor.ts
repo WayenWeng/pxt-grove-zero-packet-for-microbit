@@ -115,7 +115,6 @@ namespace sensor
      */
     //% blockId=grove_get_sound_value block="sound level"
     //% weight=98 blockGap=8
-    //% advanced=true
     //% help=
     export function soundLevel(): number
     {
