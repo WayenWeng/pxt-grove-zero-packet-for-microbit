@@ -1,0 +1,21 @@
+{
+    "name": "grove-zero",
+    "version": "0.0.0",
+    "description": "",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*",
+        "radio": "*"
+    },
+    "files": [
+        "README.md",
+        "driver.ts",
+        "sensor.ts",
+        "sound.ts",
+        "motor.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false
+}
