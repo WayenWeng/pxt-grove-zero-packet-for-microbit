@@ -55,9 +55,9 @@ enum ColorEvent
 {
     //% block=black
 	Black = 0,
-    //% block=right
+    //% block=red
     Red = 1,
-    //% block=left
+    //% block=green
     Green = 2,
     //% block=blue
     Blue = 3,
