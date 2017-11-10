@@ -92,65 +92,12 @@ namespace sensor
     }
     
     /**
-     * Do something when the gesture sensor detects a motion event (move left, up etc...)
-     * @param event type of gesture to detect
-     * @param handler code to run
-     */
-    //% blockId=sensor_gesture_create_event block="on Gesture|%event"
-    //% weight=99 blockGap=8
-    //% help=
-    export function onGesture(event: GestureEvent, handler: Action) {
-        const eventId = driver.subscribeToEventSource(SensorType.Gesture);
-        control.onEvent(eventId, event, handler);
-    }
-    
-    /**
-     * Do something when the encoder sensor detects a motion event (increase, decrease etc...)
-     * @param event type of encoder to detect
-     * @param handler code to run
-     */
-    //% blockId=sensor_encoder_create_event block="on Encoder|%event"
-    //% weight=98 blockGap=8
-    //% help=
-    export function onEncoder(event: EncoderEvent, handler: Action) {
-        const eventId = driver.subscribeToEventSource(SensorType.Encoder);
-        control.onEvent(eventId, event, handler);
-    }
-    
-    /**
-     * Do something when the liner sensor detects a motion event (left, right etc...)
-     * @param event type of liner to detect
-     * @param handler code to run
-     */
-    //% blockId=sensor_liner_create_event block="on Liner|%event"
-    //% weight=97 blockGap=8
-    //% help=
-    export function onLiner(event: LinerEvent, handler: Action) {
-        const eventId = driver.subscribeToEventSource(SensorType.Liner);
-        control.onEvent(eventId, event, handler);
-    }
-    
-    /**
-     * Do something when the color sensor detects a color event (red, blue etc...)
-     * @param event type of color to detect
-     * @param handler code to run
-     */
-    //% blockId=sensor_color_create_event block="on Color|%event"
-    //% weight=96 blockGap=8
-    //% help=
-    export function onColor(event: ColorEvent, handler: Action) {
-        const eventId = driver.subscribeToEventSource(SensorType.Liner);
-        control.onEvent(eventId, event, handler);
-    }
-    
-    /**
      * Set the sound sensor threshold for triggering an event.
      * @param value the value of threshold level
      */
     //% blockId=sensor_set_sound_threshold block="set sound threshold to|%value"
     //% value.min=0 value.max=1023 value.defl=200
-    //% weight=100 blockGap=8
-    //% advanced=true
+    //% weight=99 blockGap=8
     //% help=
     export function setSoundThreshold(value: number)
     {
@@ -167,7 +114,7 @@ namespace sensor
      * Get the noise level from the sound sensor.
      */
     //% blockId=grove_get_sound_value block="sound level"
-    //% weight=99 blockGap=8
+    //% weight=98 blockGap=8
     //% advanced=true
     //% help=
     export function soundLevel(): number
@@ -177,12 +124,64 @@ namespace sensor
         data = driver.i2cReceiveBytes(0x06, 2);
         return (data[0] + data[1] * 256);
     }
-
+    
+    /**
+     * Do something when the gesture sensor detects a motion event (move left, up etc...)
+     * @param event type of gesture to detect
+     * @param handler code to run
+     */
+    //% blockId=sensor_gesture_create_event block="on Gesture|%event"
+    //% weight=97 blockGap=8
+    //% help=
+    export function onGesture(event: GestureEvent, handler: Action) {
+        const eventId = driver.subscribeToEventSource(SensorType.Gesture);
+        control.onEvent(eventId, event, handler);
+    }
+    
+    /**
+     * Do something when the encoder sensor detects a motion event (increase, decrease etc...)
+     * @param event type of encoder to detect
+     * @param handler code to run
+     */
+    //% blockId=sensor_encoder_create_event block="on Encoder|%event"
+    //% weight=96 blockGap=8
+    //% help=
+    export function onEncoder(event: EncoderEvent, handler: Action) {
+        const eventId = driver.subscribeToEventSource(SensorType.Encoder);
+        control.onEvent(eventId, event, handler);
+    }
+    
+    /**
+     * Do something when the liner sensor detects a motion event (left, right etc...)
+     * @param event type of liner to detect
+     * @param handler code to run
+     */
+    //% blockId=sensor_liner_create_event block="on Liner|%event"
+    //% weight=95 blockGap=8
+    //% help=
+    export function onLiner(event: LinerEvent, handler: Action) {
+        const eventId = driver.subscribeToEventSource(SensorType.Liner);
+        control.onEvent(eventId, event, handler);
+    }
+    
+    /**
+     * Do something when the color sensor detects a color event (red, blue etc...)
+     * @param event type of color to detect
+     * @param handler code to run
+     */
+    //% blockId=sensor_color_create_event block="on Color|%event"
+    //% weight=94 blockGap=8
+    //% help=
+    export function onColor(event: ColorEvent, handler: Action) {
+        const eventId = driver.subscribeToEventSource(SensorType.Liner);
+        control.onEvent(eventId, event, handler);
+    }
+    
     /**
      * See if the sound sensor detected a loud sound.
      */
     //% blockId=sensor_is_sound_event_generate block="Loud sound was triggered"
-    //% weight=97 blockGap=8
+    //% weight=100 blockGap=8
     //% advanced=true
     //% help=
     export function wasLoudSoundTriggered(): boolean
@@ -198,7 +197,7 @@ namespace sensor
      * @param event of gesture device
      */
     //% blockId=sensor_is_gesture_event_generate block="Gesture|%event|was triggered"
-    //% weight=96 blockGap=8
+    //% weight=99 blockGap=8
     //% advanced=true
     //% help=
     export function wasGestureTriggered(event: GestureEvent): boolean
@@ -215,7 +214,7 @@ namespace sensor
      * @param event of encoder device
      */
     //% blockId=sensor_is_encoder_event_generate block="Encoder|%event|was triggered"
-    //% weight=95 blockGap=8
+    //% weight=98 blockGap=8
     //% advanced=true
     //% help=
     export function wasEncoderTriggered(event: EncoderEvent): boolean
@@ -232,7 +231,7 @@ namespace sensor
      * @param event of liner device
      */
     //% blockId=sensor_is_liner_event_generate block="Liner|%event|was triggered"
-    //% weight=94 blockGap=8
+    //% weight=97 blockGap=8
     //% advanced=true
     //% help=
     export function wasLinerTriggered(event: LinerEvent): boolean
@@ -249,7 +248,7 @@ namespace sensor
      * @param event of color device
      */
     //% blockId=sensor_is_color_event_generate block="Color|%event|was triggered"
-    //% weight=93 blockGap=8
+    //% weight=96 blockGap=8
     //% advanced=true
     //% help=
     export function wasColorTriggered(event: ColorEvent): boolean
