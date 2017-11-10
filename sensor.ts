@@ -63,7 +63,6 @@ enum LinerEvent
  * Functions to operate G2 module.
  */
 //% weight=50 color=#E5B646 icon="\uf108" block="Sensor"
-//% groups='["other", "More"]'
 namespace sensor
 {
     /**
@@ -121,7 +120,8 @@ namespace sensor
      * Get the noise level from the sound sensor.
      */
     //% blockId=grove_get_sound_value block="sound level"
-    //% weight=97 blockGap=8
+    //% weight=100 blockGap=8
+    //% advanced=true
     //% help=
     export function soundLevel(): number
     {
@@ -137,7 +137,8 @@ namespace sensor
      */
     //% blockId=sensor_set_sound_threshold block="set sound threshold to|%value"
     //% value.min=0 value.max=1023 value.defl=200
-    //% weight=100 blockGap=8 group="Calibration"
+    //% weight=99 blockGap=8
+    //% advanced=true
     //% help=
     export function setSoundThreshold(value: number)
     {
@@ -154,8 +155,8 @@ namespace sensor
      * See if the sound sensor detected a loud sound.
      */
     //% blockId=sensor_is_sound_event_generate block="Loud sound was triggered"
-    //% weight=100 blockGap=8
-    //% group="More"
+    //% weight=97 blockGap=8
+    //% advanced=true
     //% help=
     export function wasLoudSoundTriggered(): boolean
     {
@@ -170,8 +171,8 @@ namespace sensor
      * @param event of gesture device
      */
     //% blockId=sensor_is_gesture_event_generate block="Gesture|%event|was triggered"
-    //% weight=99 blockGap=8
-    //% group="More"
+    //% weight=96 blockGap=8
+    //% advanced=true
     //% help=
     export function wasGestureTriggered(event: GestureEvent): boolean
     {
@@ -187,8 +188,8 @@ namespace sensor
      * @param event of encoder device
      */
     //% blockId=sensor_is_encoder_event_generate block="Encoder|%event|was triggered"
-    //% weight=98 blockGap=8
-    //% group="More"
+    //% weight=95 blockGap=8
+    //% advanced=true
     //% help=
     export function wasEncoderTriggered(event: EncoderEvent): boolean
     {
@@ -204,8 +205,8 @@ namespace sensor
      * @param event of liner device
      */
     //% blockId=sensor_is_liner_event_generate block="Liner|%event|was triggered"
-    //% weight=97 blockGap=8
-    //% group="More"
+    //% weight=94 blockGap=8
+    //% advanced=true
     //% help=
     export function wasLinerTriggered(event: LinerEvent): boolean
     {
