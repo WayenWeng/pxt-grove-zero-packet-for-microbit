@@ -229,7 +229,7 @@ namespace sound
     //% blockId=sound_buzzer_note block="%note"
     //% note.fieldEditor="note" note.defl="262"
     //% note.fieldOptions.editorColour="#B64B4D" note.fieldOptions.decompileLiterals=true
-    //% useEnumVal=1 color="#FFFFFF" colorSecondary="#B64B4D" shim=TD_ID
+    //% useEnumVal=1 shim=TD_ID
     //% weight=2 blockGap=8
     export function notePicker(note: Note): number {
         return note;

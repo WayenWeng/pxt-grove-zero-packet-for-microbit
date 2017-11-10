@@ -115,21 +115,6 @@ namespace sensor
         const eventId = driver.subscribeToEventSource(SensorType.Liner);
         control.onEvent(eventId, event, handler);
     }
-
-    /**
-     * Get the noise level from the sound sensor.
-     */
-    //% blockId=grove_get_sound_value block="sound level"
-    //% weight=100 blockGap=8
-    //% advanced=true
-    //% help=
-    export function soundLevel(): number
-    {
-        let data: Buffer = pins.createBuffer(2);
-        driver.i2cSendByte(0x06, 2);
-        data = driver.i2cReceiveBytes(0x06, 2);
-        return (data[0] + data[1] * 256);
-    }
     
     /**
      * Set the sound sensor threshold for triggering an event.
@@ -137,7 +122,7 @@ namespace sensor
      */
     //% blockId=sensor_set_sound_threshold block="set sound threshold to|%value"
     //% value.min=0 value.max=1023 value.defl=200
-    //% weight=99 blockGap=8
+    //% weight=100 blockGap=8
     //% advanced=true
     //% help=
     export function setSoundThreshold(value: number)
@@ -149,6 +134,21 @@ namespace sensor
         data[3] = value >> 8;
         data[4] = 0; // 0: Save to ram; 1: Save to flash.
         driver.i2cSendBytes(6, data);
+    }
+    
+    /**
+     * Get the noise level from the sound sensor.
+     */
+    //% blockId=grove_get_sound_value block="sound level"
+    //% weight=99 blockGap=8
+    //% advanced=true
+    //% help=
+    export function soundLevel(): number
+    {
+        let data: Buffer = pins.createBuffer(2);
+        driver.i2cSendByte(0x06, 2);
+        data = driver.i2cReceiveBytes(0x06, 2);
+        return (data[0] + data[1] * 256);
     }
 
     /**
