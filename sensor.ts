@@ -51,12 +51,26 @@ enum EncoderEvent
 	Press = 3
 };
 
+enum ColorEvent
+{
+    //% block=black
+	Black = 0,
+    //% block=right
+    Red = 1,
+    //% block=left
+    Green = 2,
+    //% block=blue
+    Blue = 3,
+    //% block=white
+    White = 4,
+};
+
 enum LinerEvent
 {
     //% block=left
-	Left = 1,
+	Left = 5,
     //% block=right
-    Right = 2
+    Right = 6
 };
 
 /**
@@ -112,6 +126,19 @@ namespace sensor
     //% weight=97 blockGap=8
     //% help=
     export function onLiner(event: LinerEvent, handler: Action) {
+        const eventId = driver.subscribeToEventSource(SensorType.Liner);
+        control.onEvent(eventId, event, handler);
+    }
+    
+    /**
+     * Do something when the color sensor detects a color event (red, blue etc...)
+     * @param event type of color to detect
+     * @param handler code to run
+     */
+    //% blockId=sensor_color_create_event block="on Color|%event"
+    //% weight=96 blockGap=8
+    //% help=
+    export function onColor(event: ColorEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Liner);
         control.onEvent(eventId, event, handler);
     }
@@ -212,6 +239,23 @@ namespace sensor
     {
         let eventValue = event;
         if(driver.addrBuffer[SensorType.Liner] == 0)onLiner(event, () => {});
+        if(driver.lastStatus[SensorType.Liner] == eventValue)return true;
+        return false;
+    }
+    
+    /**
+     * Get the color sensor event, see if it detected a motion (red, blue etc...)
+     * @param type of color device
+     * @param event of color device
+     */
+    //% blockId=sensor_is_color_event_generate block="Color|%event|was triggered"
+    //% weight=93 blockGap=8
+    //% advanced=true
+    //% help=
+    export function wasColorTriggered(event: ColorEvent): boolean
+    {
+        let eventValue = event;
+        if(driver.addrBuffer[SensorType.Liner] == 0)onColor(event, () => {});
         if(driver.lastStatus[SensorType.Liner] == eventValue)return true;
         return false;
     }
