@@ -76,7 +76,7 @@ enum LinerEvent
 /**
  * Functions to operate G2 module.
  */
-//% weight=50 color=#E5B646 icon="\uf108" block="Sensor"
+//% weight=50 color=#E5B646 icon="parts/sensor.svg" block="Sensor"
 namespace sensor
 {
     /**
@@ -85,7 +85,7 @@ namespace sensor
      */
     //% blockId=sensor_sound_create_event block="on loud sound"
     //% weight=100 blockGap=8
-    //% help=
+    //% help=docs/reference/sensor/on-loud-sound
     export function onLoudSound(handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Sound);
         control.onEvent(eventId, LightEvent.Light, handler);

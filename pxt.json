@@ -9,6 +9,10 @@
     },
     "files": [
         "README.md",
+        "parts/motor.svg",
+        "parts/sensor.svg",
+        "parts/sound.svg",
+        "docs/reference/sensor/on-loud-sound.md",
         "driver.ts",
         "sensor.ts",
         "sound.ts",

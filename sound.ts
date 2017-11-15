@@ -63,7 +63,7 @@ enum RepeatType
 /**
  * Functions for controlling the buzzer module
  */
-//% weight=49 color=#B64B4D icon="\uf108" block="Sound"
+//% weight=49 color=#B64B4D icon="parts/sound.svg" block="Sound"
 namespace sound
 {
     /**

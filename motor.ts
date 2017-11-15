@@ -9,7 +9,7 @@ enum MotorTpye {
 /**
  * Functions to operate G2 module.
  */
-//% weight=48 color=#A26236 icon="\uf108" block="Motor"
+//% weight=48 color=#A26236 icon="parts/motor.svg" block="Motor"
 namespace motor
 {
     /**
