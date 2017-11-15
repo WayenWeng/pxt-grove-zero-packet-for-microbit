@@ -61,7 +61,7 @@ namespace driver
                             control.raiseEvent(eventId, driver.lastStatus[address]);
                         }
                     }
-                    basic.pause(100);
+                    basic.pause(50);
                 }
             });
         }
