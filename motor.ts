@@ -21,19 +21,22 @@ namespace motor
     //% weight=100 blockGap=8
     export function moveServo(degree: number)
     {
-
+        let data: Buffer = pins.createBuffer(2);
+        data[0] = 0x02;
+        data[1] = degree;
+        driver.i2cSendBytes(0x24, data);
     }
     
-    /**
-     * Read the servo degree.
-     */
-    //% blockId=motor_read_servo_degree block="servo degree"
-    //% weight=100 blockGap=8
-    export function readServo(): number
-    {
-        
-        return 0;
-    }
+//    /**
+//     * Read the servo degree.
+//     */
+//    //% blockId=motor_read_servo_degree block="servo degree"
+//    //% weight=100 blockGap=8
+//    export function readServo(): number
+//    {
+//        
+//        return 0;
+//    }
     
     /**
      * Set the wheel run by a speed.
