@@ -9,7 +9,7 @@ enum MotorTpye {
 /**
  * Functions to operate G2 module.
  */
-//% weight=48 color=#A26236 icon="parts/motor.svg" block="Motor"
+//% weight=48 color=#A26236 icon="\f018" block="Motor"
 namespace motor
 {
     /**
@@ -19,7 +19,6 @@ namespace motor
     //% blockId=motor_set_servo_move block="servo move|%degree"
     //% degree.min=0 degree.max=180 degree.defl=0
     //% weight=100 blockGap=8
-    //% help=
     export function moveServo(degree: number)
     {
 
@@ -30,7 +29,6 @@ namespace motor
      */
     //% blockId=motor_read_servo_degree block="servo degree"
     //% weight=100 blockGap=8
-    //% help=
     export function readServo(): number
     {
         
@@ -46,7 +44,6 @@ namespace motor
     //% left.min=-255 left.max=255 left.defl=0
     //% right.min=-255 right.max=255 right.defl=0
     //% weight=98 blockGap=8
-    //% help=
     export function runWheel(left: number, right: number)
     {
 

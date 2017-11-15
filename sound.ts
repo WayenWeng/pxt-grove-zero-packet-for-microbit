@@ -63,7 +63,7 @@ enum RepeatType
 /**
  * Functions for controlling the buzzer module
  */
-//% weight=49 color=#B64B4D icon="parts/sound.svg" block="Sound"
+//% weight=49 color=#B64B4D icon="\f028" block="Sound"
 namespace sound
 {
     /**
@@ -73,7 +73,6 @@ namespace sound
      */
     //% blockId=sound_buzzer_play_tone block="play tone|%note=sound_buzzer_note|for %beat=sound_buzzer_beat"
     //% weight=100 blockGap=8
-	//% help=sound/play-tone
     export function playTone(frequency: number, ms: number)
     {
 
@@ -100,7 +99,6 @@ namespace sound
     //% blockId=sound_buzzer_ring_tone block="ring tone|%note=sound_buzzer_note"
     //% weight=99
     //% useEnumVal=1
-	//% help=sound/ring-tone
     export function ringTone(frequency: number)
     {
         let data: Buffer = pins.createBuffer(5);
@@ -137,7 +135,6 @@ namespace sound
      */
     //% blockId=sound_buzzer_rest_for_time block="rest for %time=sound_buzzer_beat"
     //% weight=96
-	//% help=sound/rest
     export function rest(time: number)
     {
         stopPlay();
@@ -149,7 +146,6 @@ namespace sound
      * Return the duration of a beat in milliseconds (the beat fraction).
      * @param fraction the fraction of the current whole note, eg: BeatFractionType.Half
      */
-    //% help=music/beat
     //% blockId=sound_buzzer_beat block="%fraction|beat"
     //% weight=1 blockGap=8
     export function beat(fraction: BeatFractionType = BeatFractionType.Whole): number {
@@ -174,7 +170,6 @@ namespace sound
     //% blockId=sound_buzzer_set_tempo_to block="set tempo to (bpm)|%bpm"
     //% value.bpm=60 value.bpm=960
     //% weight=95 blockGap=8
-	//% help=sound/set-tempo-to
     export function setTempoTo(bpm: number = 120)
     {
         let data: Buffer = pins.createBuffer(4);
@@ -191,7 +186,6 @@ namespace sound
      */
     //% blockId=sound_buzzer_change_tempo_by block="change tempo by (bpm)|%bpm"
     //% weight=94 blockGap=8
-	//% help=sound/change-tempo-by
     export function changeTempoBy(bpm: number)
     {
         let data: Buffer = pins.createBuffer(5);
@@ -213,7 +207,6 @@ namespace sound
      */
     //% blockId=sound_get_buzzer_tempo_to block="tempo (bpm)"
     //% weight=93
-	//% help=sound/get-tempo
     export function getTempo(): number
     {
         let data: Buffer = pins.createBuffer(2);

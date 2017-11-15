@@ -76,7 +76,7 @@ enum LinerEvent
 /**
  * Functions to operate G2 module.
  */
-//% weight=50 color=#E5B646 icon="parts/sensor.svg" block="Sensor"
+//% weight=50 color=#E5B646 icon="\f0c3" block="Sensor"
 namespace sensor
 {
     /**
@@ -85,8 +85,6 @@ namespace sensor
      */
     //% blockId=sensor_sound_create_event block="on loud sound"
     //% weight=100 blockGap=8
-    //% help=sensor/on-loud-sound
-    //% parts="sound"
     export function onLoudSound(handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Sound);
         control.onEvent(eventId, LightEvent.Light, handler);
@@ -99,8 +97,6 @@ namespace sensor
     //% blockId=sensor_set_sound_threshold block="set sound threshold to|%value"
     //% value.min=0 value.max=1023 value.defl=200
     //% weight=99 blockGap=8
-    //% help=
-    //% parts="sound"
     export function setSoundThreshold(value: number)
     {
         let data: Buffer = pins.createBuffer(5);
@@ -117,8 +113,6 @@ namespace sensor
      */
     //% blockId=grove_get_sound_value block="sound level"
     //% weight=98 blockGap=8
-    //% help=
-    //% parts="sound"
     export function soundLevel(): number
     {
         let data: Buffer = pins.createBuffer(2);
@@ -134,7 +128,6 @@ namespace sensor
      */
     //% blockId=sensor_gesture_create_event block="on gesture|%event"
     //% weight=97 blockGap=8
-    //% help=
     export function onGesture(event: GestureEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Gesture);
         control.onEvent(eventId, event, handler);
@@ -147,7 +140,6 @@ namespace sensor
      */
     //% blockId=sensor_encoder_create_event block="on encoder|%event"
     //% weight=96 blockGap=8
-    //% help=
     export function onEncoder(event: EncoderEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Encoder);
         control.onEvent(eventId, event, handler);
@@ -160,7 +152,6 @@ namespace sensor
      */
     //% blockId=sensor_liner_create_event block="on liner|%event"
     //% weight=95 blockGap=8
-    //% help=
     export function onLiner(event: LinerEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Liner);
         control.onEvent(eventId, event, handler);
@@ -173,7 +164,6 @@ namespace sensor
      */
     //% blockId=sensor_color_create_event block="on color|%event"
     //% weight=94 blockGap=8
-    //% help=
     export function onColor(event: ColorEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Liner);
         control.onEvent(eventId, event, handler);
@@ -185,7 +175,6 @@ namespace sensor
     //% blockId=sensor_is_sound_event_generate block="loud sound was triggered"
     //% weight=100 blockGap=8
     //% advanced=true
-    //% help=
     export function wasLoudSoundTriggered(): boolean
     {
         if(driver.addrBuffer[SensorType.Sound] == 0)onLoudSound(() => {});
@@ -201,7 +190,6 @@ namespace sensor
     //% blockId=sensor_is_gesture_event_generate block="gesture|%event|was triggered"
     //% weight=99 blockGap=8
     //% advanced=true
-    //% help=
     export function wasGestureTriggered(event: GestureEvent): boolean
     {
         let eventValue = event;
@@ -218,7 +206,6 @@ namespace sensor
     //% blockId=sensor_is_encoder_event_generate block="encoder|%event|was triggered"
     //% weight=98 blockGap=8
     //% advanced=true
-    //% help=
     export function wasEncoderTriggered(event: EncoderEvent): boolean
     {
         let eventValue = event;
@@ -235,7 +222,6 @@ namespace sensor
     //% blockId=sensor_is_liner_event_generate block="liner|%event|was triggered"
     //% weight=97 blockGap=8
     //% advanced=true
-    //% help=
     export function wasLinerTriggered(event: LinerEvent): boolean
     {
         let eventValue = event;
@@ -252,7 +238,6 @@ namespace sensor
     //% blockId=sensor_is_color_event_generate block="color|%event|was triggered"
     //% weight=96 blockGap=8
     //% advanced=true
-    //% help=
     export function wasColorTriggered(event: ColorEvent): boolean
     {
         let eventValue = event;
