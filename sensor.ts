@@ -76,7 +76,7 @@ enum LinerEvent
 /**
  * Functions to operate G2 module.
  */
-//% weight=50 color=#E5B646 icon="\f0c3" block="Sensor"
+//% weight=50 color=#E5B646 icon="\uf0c3" block="Sensor"
 namespace sensor
 {
     /**
