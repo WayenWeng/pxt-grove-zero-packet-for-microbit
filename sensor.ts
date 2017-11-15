@@ -86,6 +86,7 @@ namespace sensor
     //% blockId=sensor_sound_create_event block="on loud sound"
     //% weight=100 blockGap=8
     //% help=docs/reference/sensor/on-loud-sound
+    //% parts="sound"
     export function onLoudSound(handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Sound);
         control.onEvent(eventId, LightEvent.Light, handler);
@@ -99,6 +100,7 @@ namespace sensor
     //% value.min=0 value.max=1023 value.defl=200
     //% weight=99 blockGap=8
     //% help=
+    //% parts="sound"
     export function setSoundThreshold(value: number)
     {
         let data: Buffer = pins.createBuffer(5);
@@ -116,6 +118,7 @@ namespace sensor
     //% blockId=grove_get_sound_value block="sound level"
     //% weight=98 blockGap=8
     //% help=
+    //% parts="sound"
     export function soundLevel(): number
     {
         let data: Buffer = pins.createBuffer(2);
