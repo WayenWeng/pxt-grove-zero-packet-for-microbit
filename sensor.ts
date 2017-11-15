@@ -85,7 +85,7 @@ namespace sensor
      */
     //% blockId=sensor_sound_create_event block="on loud sound"
     //% weight=100 blockGap=8
-    //% help=docs/reference/sensor/on-loud-sound
+    //% help=sensor/on-loud-sound
     //% parts="sound"
     export function onLoudSound(handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Sound);
