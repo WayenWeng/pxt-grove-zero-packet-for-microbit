@@ -11,14 +11,6 @@ enum SensorType {
     
 };
 
-enum LightEvent
-{
-    //% block=dark
-    Dark = 1,
-    //% block=light
-	Light = 3
-};
-
 enum GestureEvent
 {
     //% block=left
@@ -103,7 +95,7 @@ namespace sensor
     //% weight=100 blockGap=8
     export function onLoudSound(handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Sound);
-        control.onEvent(eventId, LightEvent.Light, handler);
+        control.onEvent(eventId, 3, handler);
     }
     
     /**
