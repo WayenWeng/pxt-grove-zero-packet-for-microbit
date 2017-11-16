@@ -49,8 +49,8 @@ namespace motor
     
     /**
      * Run wheel by speed and direction.
-     * @speed the speed that want to run.
-     * @direction the direction that want to set.
+     * @param speed the speed that want to run.
+     * @param direction the direction that want to set.
      */
     //% blockId=motor_run_wheel block="wheel run|%speed|on|%direction"
     //% weight=99 blockGap=8
