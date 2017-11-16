@@ -48,7 +48,7 @@ namespace motor
     }
     
     /**
-     * Run wheel by a speed and direction
+     * Run wheel by speed and direction.
      * @speed the speed that want to run.
      * @direction the direction that want to set.
      */
@@ -60,7 +60,7 @@ namespace motor
     }
     
     /**
-     * Run wheel by a duty.
+     * Run wheel by duty.
      * @param left the left speed you want to run.
      * @param right the right speed you want to run.
      */
