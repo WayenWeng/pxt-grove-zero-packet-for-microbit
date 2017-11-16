@@ -6,6 +6,26 @@ enum MotorTpye {
     Wheel = 0x26
 };
 
+enum SpeedTpye {
+    //% block=slow
+    Slow = 0,
+    //% block=medium
+    Medium = 1,
+    //% block=fast
+    Fast = 2
+};
+
+enum DirectionTpye {
+    //% block=left
+    Left = 0,
+    //% block=right
+    Right = 1,
+    //% block=straight
+    Straight = 2,
+    //% block=back
+    Back = 3
+};
+
 /**
  * Functions to operate G2 module.
  */
@@ -16,7 +36,7 @@ namespace motor
      * Move the servo by a degree.
      * @param degree set the degree you want to move.
      */
-    //% blockId=motor_set_servo_move block="servo move|%degree"
+    //% blockId=motor_move_servo block="servo move|%degree"
     //% degree.min=0 degree.max=180 degree.defl=0
     //% weight=100 blockGap=8
     export function moveServo(degree: number)
@@ -27,27 +47,29 @@ namespace motor
         driver.i2cSendBytes(0x24, data);
     }
     
-//    /**
-//     * Read the servo degree.
-//     */
-//    //% blockId=motor_read_servo_degree block="servo degree"
-//    //% weight=100 blockGap=8
-//    export function readServo(): number
-//    {
-//        
-//        return 0;
-//    }
+    /**
+     * Run wheel by a speed and direction
+     * @speed the speed that want to run.
+     * @direction the direction that want to set.
+     */
+    //% blockId=motor_run_wheel block="wheel run|%speed"
+    //% weight=99 blockGap=8
+    export function runWheel(speed: SpeedTpye, direction: DirectionTpye)
+    {
+
+    }
     
     /**
-     * Set the wheel run by a speed.
-     * @param left set the left speed you want to run.
-     * @param right set the right speed you want to run.
+     * Run wheel by a duty.
+     * @param left the left speed you want to run.
+     * @param right the right speed you want to run.
      */
-    //% blockId=motor_set_wheel_run block="wheel run|left|%left|right|%right"
-    //% left.min=-255 left.max=255 left.defl=0
-    //% right.min=-255 right.max=255 right.defl=0
-    //% weight=98 blockGap=8
-    export function runWheel(left: number, right: number)
+    //% blockId=motor_run_wheel_with_duty block="wheel run|left|%left|right|%right"
+    //% left.min=-128 left.max=128 left.defl=0
+    //% right.min=-128 right.max=128 right.defl=0
+    //% weight=100 blockGap=8
+    //% advanced=true
+    export function runWheelWithDuty(left: number, right: number)
     {
 
     }

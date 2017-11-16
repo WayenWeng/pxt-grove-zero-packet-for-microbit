@@ -68,9 +68,25 @@ enum ColorEvent
 enum LinerEvent
 {
     //% block=left
-	Left = 5,
+	Left = 0,
     //% block=right
-    Right = 6
+    Right = 1,
+    //% block=straight
+	Straight = 2,
+    //% block=end
+    End = 3
+};
+
+enum LinerType
+{
+    //% block=A
+	A = 0,
+    //% block=B
+    B = 1,
+    //% block=C
+	C = 2,
+    //% block=D
+    D = 3
 };
 
 /**
@@ -146,18 +162,6 @@ namespace sensor
     }
     
     /**
-     * Do something when the liner sensor detects a motion event (left, right etc...)
-     * @param event type of liner to detect
-     * @param handler code to run
-     */
-    //% blockId=sensor_liner_create_event block="on liner|%event"
-    //% weight=95 blockGap=8
-    export function onLiner(event: LinerEvent, handler: Action) {
-        const eventId = driver.subscribeToEventSource(SensorType.Liner);
-        control.onEvent(eventId, event, handler);
-    }
-    
-    /**
      * Do something when the color sensor detects a color event (red, blue etc...)
      * @param event type of color to detect
      * @param handler code to run
@@ -167,6 +171,40 @@ namespace sensor
     export function onColor(event: ColorEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Liner);
         control.onEvent(eventId, event, handler);
+    }
+    
+    const eventIdLiner = 9000;
+    let initLiner = false;
+    let lastLiner = 0;
+    
+    /**
+     * Do something when the liner sensor detects a motion event (left, right etc...)
+     * @param event type of liner to detect
+     * @param handler code to run
+     */
+    //% blockId=sensor_liner_create_event block="on liner|%event"
+    //% weight=95 blockGap=8
+    export function onLiner(event: LinerEvent, handler: Action) {
+        control.onEvent(eventIdLiner, event, handler);
+        if (!initLiner) {
+            initLiner = true;
+            control.inBackground(() => {
+                while(true) {
+                    
+                    let data: Buffer = pins.createBuffer(4);
+                    driver.i2cSendByte(SensorType.Liner, 0x02);
+                    data = driver.i2cReceiveBytes(SensorType.Liner, 4);
+                    
+                    const event = data[0];
+                    
+                    if (event != lastLiner) {
+                        lastLiner = event;
+                        control.raiseEvent(eventIdLiner, lastLiner);
+                    }
+                    basic.pause(25);
+                }
+            })
+        }
     }
     
     /**
@@ -184,7 +222,6 @@ namespace sensor
     
     /**
      * Get the gesture sensor event, see if it detected a motion (move left etc...)
-     * @param type of gesture device
      * @param event of gesture device
      */
     //% blockId=sensor_is_gesture_event_generate block="gesture|%event|was triggered"
@@ -200,7 +237,6 @@ namespace sensor
     
     /**
      * Get the encoder sensor event, see if it detected a motion (increase, decrease etc...)
-     * @param type of encoder device
      * @param event of encoder device
      */
     //% blockId=sensor_is_encoder_event_generate block="encoder|%event|was triggered"
@@ -213,36 +249,50 @@ namespace sensor
         if(driver.lastStatus[SensorType.Encoder] == eventValue)return true;
         return false;
     }
-    
-    /**
-     * Get the liner sensor event, see if it detected a motion (left, right etc...)
-     * @param type of liner device
-     * @param event of liner device
-     */
-    //% blockId=sensor_is_liner_event_generate block="liner|%event|was triggered"
-    //% weight=97 blockGap=8
-    //% advanced=true
-    export function wasLinerTriggered(event: LinerEvent): boolean
-    {
-        let eventValue = event;
-        if(driver.addrBuffer[SensorType.Liner] == 0)onLiner(event, () => {});
-        if(driver.lastStatus[SensorType.Liner] == eventValue)return true;
-        return false;
-    }
-    
+
     /**
      * Get the color sensor event, see if it detected a motion (red, blue etc...)
-     * @param type of color device
      * @param event of color device
      */
     //% blockId=sensor_is_color_event_generate block="color|%event|was triggered"
-    //% weight=96 blockGap=8
+    //% weight=97 blockGap=8
     //% advanced=true
     export function wasColorTriggered(event: ColorEvent): boolean
     {
         let eventValue = event;
         if(driver.addrBuffer[SensorType.Liner] == 0)onColor(event, () => {});
         if(driver.lastStatus[SensorType.Liner] == eventValue)return true;
+        return false;
+    }    
+    
+    /**
+     * Get the liner sensor event, see if it detected a motion (left, right etc...)
+     * @param event of liner device
+     */
+    //% blockId=sensor_is_liner_event_generate block="liner|%event|was triggered"
+    //% weight=96 blockGap=8
+    //% advanced=true
+    export function wasLinerTriggered(event: LinerEvent): boolean
+    {
+        let eventValue = event;
+        if(!initLiner)onLiner(event, () => {});
+        if(lastLiner == eventValue)return true;
+        return false;
+    }
+    
+    /**
+     * Get the liner sensor value, see if it detected a motion (A, B etc...)
+     * @param type of liner device
+     */
+    //% blockId=sensor_is_liner_type_generate block="liner|%type|was triggered"
+    //% weight=95 blockGap=8
+    //% advanced=true
+    export function wasLinerTypeTriggered(type: LinerType): boolean
+    {
+        let data: Buffer = pins.createBuffer(4);
+        driver.i2cSendByte(SensorType.Liner, 0x03);
+        data = driver.i2cReceiveBytes(SensorType.Liner, 4);
+        if(data[0] & (1 << type))return true;
         return false;
     }
 }
