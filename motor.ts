@@ -52,7 +52,7 @@ namespace motor
      * @speed the speed that want to run.
      * @direction the direction that want to set.
      */
-    //% blockId=motor_run_wheel block="wheel run|%speed"
+    //% blockId=motor_run_wheel block="wheel run|%speed|on|%direction"
     //% weight=99 blockGap=8
     export function runWheel(speed: SpeedTpye, direction: DirectionTpye)
     {
