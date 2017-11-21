@@ -61,7 +61,7 @@ enum RepeatType
 };
 
 /**
- * Functions for controlling the buzzer module
+ * Functions to operate Grove Zero device.
  */
 //% weight=49 color=#B64B4D icon="\uf028" block="Sound"
 namespace sound

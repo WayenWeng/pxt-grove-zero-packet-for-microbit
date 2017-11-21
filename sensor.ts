@@ -82,7 +82,7 @@ enum LinerType
 };
 
 /**
- * Functions to operate G2 module.
+ * Functions to operate Grove Zero device.
  */
 //% weight=50 color=#E5B646 icon="\uf0c3" block="Sensor"
 namespace sensor
