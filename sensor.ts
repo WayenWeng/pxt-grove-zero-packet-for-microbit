@@ -45,44 +45,46 @@ enum EncoderEvent
 
 enum ColorEvent
 {
-    //% block=black
-	Black = 0,
+   //% block=black
+	Black = 1,
     //% block=red
-    Red = 1,
+    Red = 2,
     //% block=green
-    Green = 2,
+    Green = 3,
     //% block=blue
-    Blue = 3,
-    //% block=white
-    White = 4,
+    Blue = 4,
+    //% block=other
+    Other = 5
 };
 
 enum LinerEvent
 {
     //% block=left
-	Left = 0,
+	Left = 1,
     //% block=right
-    Right = 1,
+    Right = 2,
     //% block=straight
-	Straight = 2,
+	Straight = 3,
     //% block=end
-    End = 3
+    End = 4
 };
 
 enum LinerType
 {
     //% block=A
-	A = 0,
+	A = 0x10,
     //% block=B
-    B = 1,
+    B = 0x08,
     //% block=C
-	C = 2,
+	C = 0x04,
     //% block=D
-    D = 3
+	D = 0x02,
+    //% block=E
+    E = 0x01
 };
 
 /**
- * Functions to operate Grove Zero device.
+ * Functions to operate G2 module.
  */
 //% weight=50 color=#E5B646 icon="\uf0c3" block="Sensor"
 namespace sensor
@@ -182,21 +184,29 @@ namespace sensor
             initLiner = true;
             control.inBackground(() => {
                 while(true) {
-                    
-                    let data: Buffer = pins.createBuffer(4);
                     driver.i2cSendByte(SensorType.Liner, 0x02);
-                    data = driver.i2cReceiveBytes(SensorType.Liner, 4);
-                    
-                    const event = data[0];
-                    
+                    const event = driver.i2cReceiveByte(SensorType.Liner);                   
                     if (event != lastLiner) {
                         lastLiner = event;
                         control.raiseEvent(eventIdLiner, lastLiner);
                     }
-                    basic.pause(25);
+                    basic.pause(50);
                 }
             })
         }
+    }
+    
+    /**
+     * Get the color value from the color sensor in R:G:B.
+     */
+    //% blockId=sensor_get_color_rgb block="color"
+    //% weight=94 blockGap=8
+    export function color(): number
+    {
+        let data: Buffer = pins.createBuffer(4);
+        driver.i2cSendByte(SensorType.Liner, 0x04);
+        data = driver.i2cReceiveBytes(SensorType.Liner, 4);
+        return (data[0] + data[1] * 256 + data[2] * 65536);
     }
     
     /**
@@ -281,10 +291,10 @@ namespace sensor
     //% advanced=true
     export function wasLinerTypeTriggered(type: LinerType): boolean
     {
-        let data: Buffer = pins.createBuffer(4);
+        let data = 0;
         driver.i2cSendByte(SensorType.Liner, 0x03);
-        data = driver.i2cReceiveBytes(SensorType.Liner, 4);
-        if(data[0] & (1 << type))return true;
+        data = driver.i2cReceiveByte(SensorType.Liner);
+        if(data & type)return true;
         return false;
     }
 }
