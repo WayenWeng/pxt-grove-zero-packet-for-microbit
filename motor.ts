@@ -103,8 +103,8 @@ namespace motor
      * @param right the right speed you want to run.
      */
     //% blockId=motor_run_wheel_with_duty block="wheel run|left|%left|right|%right"
-    //% left.min=-128 left.max=128 left.defl=0
-    //% right.min=-128 right.max=128 right.defl=0
+    //% left.min=-255 left.max=255 left.defl=0
+    //% right.min=-255 right.max=255 right.defl=0
     //% weight=100 blockGap=8
     //% advanced=true
     export function runWheelWithDuty(left: number, right: number)
