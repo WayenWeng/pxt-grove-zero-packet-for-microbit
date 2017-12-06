@@ -10,7 +10,7 @@
     "files": [
         "README.md",
         "driver.ts",
-        "sound.ts",
+        "sensor.ts",
         "motor.ts"
     ],
     "testFiles": [
