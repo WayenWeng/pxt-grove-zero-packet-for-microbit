@@ -10,7 +10,7 @@
   "GestureEvent.Clockwise|block": "顺时针",
   "GestureEvent.Anticlockwise|block": "逆时针",
   "GestureEvent.Wave|block": "波浪线",
-  "SpeedTpye.Slow": "慢速",
-  "SpeedTpye.Medium": "中速",
-  "SpeedTpye.Fast": "快速"
+  "SpeedTpye.Slow|block": "慢速",
+  "SpeedTpye.Medium|block": "中速",
+  "SpeedTpye.Fast|block": "快速"
 }
