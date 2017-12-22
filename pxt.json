@@ -12,7 +12,8 @@
         "driver.ts",
         "sensor.ts",
         "motor.ts",
-        "_locales/zh-cn/grove-zero-strings.json"
+        "_locales/zh-cn/Motor-strings.json",
+        "_locales/zh-cn/Sensor-strings.json"
     ],
     "testFiles": [
         "test.ts"
