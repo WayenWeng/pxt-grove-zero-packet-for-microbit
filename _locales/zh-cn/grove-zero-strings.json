@@ -1,0 +1,16 @@
+{
+  "{id:category}Sensor": "Sensor",
+  "{id:category}Motor": "Motor",
+  "GestureEvent.Left|block": "向左",
+  "GestureEvent.Right|block": "向右",
+  "GestureEvent.Up|block": "向上",
+  "GestureEvent.Down|block": "向下",
+  "GestureEvent.Forward|block": "向前",
+  "GestureEvent.Backward|block": "向后",
+  "GestureEvent.Clockwise|block": "顺时针",
+  "GestureEvent.Anticlockwise|block": "逆时针",
+  "GestureEvent.Wave|block": "波浪线",
+  "SpeedTpye.Slow": "慢速",
+  "SpeedTpye.Medium": "中速",
+  "SpeedTpye.Fast": "快速"
+}
