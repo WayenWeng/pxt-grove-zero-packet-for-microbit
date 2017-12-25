@@ -63,7 +63,7 @@ namespace motor
      * @param direction the direction that want to set.
      * @param speed the speed that want to run.
      */
-    //% blockId=motor_run_wheel block="go|%direction|at speed|%speed"
+    //% blockId=motor_set_action block="go|%direction|at speed|%speed"
     //% weight=99 blockGap=8
     export function setMotormoduleAction(direction: DirectionTpye, speed: SpeedTpye)
     {
@@ -79,7 +79,7 @@ namespace motor
     /**
      * Stop the motormodule.
      */
-    //% blockId=motor_stop_wheel block="stop"
+    //% blockId=motor_stop_run block="stop"
     //% weight=98 blockGap=8
     export function stopMotormodule()
     {        
@@ -91,7 +91,7 @@ namespace motor
      * @param left the left speed you want to run.
      * @param right the right speed you want to run.
      */
-    //% blockId=motor_run_wheel_with_duty block="set motor speed left|%left|right|%right"
+    //% blockId=motor_set_speed_with_duty block="set motor speed left|%left|right|%right"
     //% left.min=-255 left.max=255 left.defl=0
     //% right.min=-255 right.max=255 right.defl=0
     //% weight=100 blockGap=8
@@ -112,7 +112,7 @@ namespace motor
      * @param motion the motion that want to set.
      * @param speed the speed that want to run.
      */
-    //% blockId=motor_run_wheel block="go|%motion|at speed|%speed|when lost the line"
+    //% blockId=motor_when_lost_line block="go|%motion|at speed|%speed|when lost the line"
     //% weight=99 blockGap=8
     //% advanced=true
     export function whenMotormoduleLostLine(motion: MotionTpye, speed: SpeedTpye)
