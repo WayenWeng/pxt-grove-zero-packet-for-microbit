@@ -2,7 +2,7 @@
   "{id:category}Sensor": "Sensor",
   "{id:category}Motor": "Motor",
   "sensor|block": "传感器",
-  "motor|block": "马达"
+  "motor|block": "马达",
   "GestureEvent.Left|block": "左",
   "GestureEvent.Right|block": "右",
   "GestureEvent.Up|block": "上",
