@@ -54,6 +54,6 @@
   "motor.moveServoTo|block": "舵机转到|%degree|(度)",
   "motor.setMotormoduleAction|block": "向|%direction|以|%speed|速运动",
   "motor.stopMotormodule|block": "停止",
-  "motor.setMotormoduleSpeed|block": "设置马达以左速|%left|右速|%right|运动",
-  "motor.whenMotormoduleLostLine|block": "当离开巡线时|%motion|以|%speed|速运动"
+  "motor.setMotormoduleSpeed|block": "马达以左速|%left|右速|%right|运动",
+  "motor.whenMotormoduleLostLine|block": "丢失巡线时马达|%motion|以|%speed|速运动"
 }
