@@ -28,17 +28,15 @@ enum GestureEvent
     //% block=clockwise
     Clockwise = 7,
     //% block=anticlockwise
-    Anticlockwise = 8,
-    //% block=wave
-    Wave = 9
+    Anticlockwise = 8
 };
 
-enum EncoderEvent
+enum KnobEvent
 {
-    //% block=increase
-	Increase = 1,
-    //% block=decrease
-	Decrease = 2,
+    //% block="rotate clockwise"
+	Clockwise = 1,
+    //% block="rotate anti-clockwise"
+	Anticlockwise = 2,
     //% block=press
 	Press = 3
 };
@@ -47,44 +45,30 @@ enum ColorEvent
 {
    //% block=black
 	Black = 1,
-    //% block=red
-    Red = 2,
-    //% block=green
-    Green = 3,
-    //% block=blue
-    Blue = 4,
+    //% block=r
+    R = 2,
+    //% block=g
+    G = 3,
+    //% block=b
+    B = 4,
     //% block=other
     Other = 5
 };
 
 enum LinerEvent
 {
-    //% block=straight
-	Straight = 1,
-    //% block=end
-    End = 2,
+    //% block=middle
+	Middle = 1,
     //% block=left
-	LeftLv1 = 3,
-    //% block="left+"
-	LeftLv2 = 4,
+	Left = 3,
+    //% block=leftmost
+	Leftmost = 4,
     //% block=right
-    RightLv1 = 5,
-    //% block="right+"
-    RightLv2 = 6
-};
-
-enum LinerType
-{
-    //% block=A
-	A = 0x10,
-    //% block=B
-    B = 0x08,
-    //% block=C
-	C = 0x04,
-    //% block=D
-	D = 0x02,
-    //% block=E
-    E = 0x01
+    Right = 5,
+    //% block=rightmost
+    Rightmost = 6,
+    //% block=lost
+    Lost = 2
 };
 
 /**
@@ -105,13 +89,13 @@ namespace sensor
     }
     
     /**
-     * Set the sound sensor threshold for triggering an event.
+     * Set the sound threshold for triggering an event.
      * @param value the value of threshold level
      */
     //% blockId=sensor_set_sound_threshold block="set sound threshold to|%value"
     //% value.min=0 value.max=1023 value.defl=200
     //% weight=99 blockGap=8
-    export function setSoundThreshold(value: number)
+    export function setSoundThresold(value: number)
     {
         let data: Buffer = pins.createBuffer(5);
         data[0] = 0x03;
@@ -127,7 +111,7 @@ namespace sensor
      */
     //% blockId=grove_get_sound_value block="sound level"
     //% weight=98 blockGap=8
-    export function soundLevel(): number
+    export function getSoundLevel(): number
     {
         let data: Buffer = pins.createBuffer(2);
         driver.i2cSendByte(0x06, 2);
@@ -136,7 +120,7 @@ namespace sensor
     }
     
     /**
-     * Do something when the gesture sensor detects a motion event (move left, up etc...)
+     * Do something when the gesture sensor detects a motion. (hand swip left, swip righ etc.)
      * @param event type of gesture to detect
      * @param handler code to run
      */
@@ -148,19 +132,19 @@ namespace sensor
     }
     
     /**
-     * Do something when the encoder sensor detects a motion event (increase, decrease etc...)
+     * Do something when the knob is rotated or pressed.
      * @param event type of encoder to detect
      * @param handler code to run
      */
-    //% blockId=sensor_encoder_create_event block="on encoder|%event"
+    //% blockId=sensor_encoder_create_event block="on knob|%event"
     //% weight=96 blockGap=8
-    export function onEncoder(event: EncoderEvent, handler: Action) {
+    export function onKnob(event: KnobEvent, handler: Action) {
         const eventId = driver.subscribeToEventSource(SensorType.Encoder);
         control.onEvent(eventId, event, handler);
     }
     
     /**
-     * Do something when the color sensor detects a color event (red, blue etc...)
+     * Do something when the color sensor detects a specific color.
      * @param event type of color to detect
      * @param handler code to run
      */
@@ -177,13 +161,13 @@ namespace sensor
     let lastLiner = 0;
     
     /**
-     * Do something when the liner sensor detects a motion event (left, right etc...)
+     * Do something when the line follower recognized the position of the line underneath.
      * @param event type of liner to detect
      * @param handler code to run
      */
-    //% blockId=sensor_liner_create_event block="on liner|%event"
+    //% blockId=sensor_liner_create_event block="on line position|%event"
     //% weight=95 blockGap=8
-    export function onLiner(event: LinerEvent, handler: Action) {
+    export function onLinePosition(event: LinerEvent, handler: Action) {
         control.onEvent(eventIdLiner, event, handler);
         if (!initLiner) {
             initLiner = true;
@@ -207,7 +191,7 @@ namespace sensor
      */
     //% blockId=sensor_get_color_rgb block="color"
     //% weight=94 blockGap=8
-    export function color(): number
+    export function getColor(): number
     {
         let data: Buffer = pins.createBuffer(4);
         driver.i2cSendByte(SensorType.Liner, 0x04);
@@ -229,7 +213,7 @@ namespace sensor
     }
     
     /**
-     * Get the gesture sensor event, see if it detected a motion (move left etc...)
+     * See if the gesture sensor detected a specific gesture.
      * @param event of gesture device
      */
     //% blockId=sensor_is_gesture_event_generate block="gesture|%event|was triggered"
@@ -244,22 +228,22 @@ namespace sensor
     }
     
     /**
-     * Get the encoder sensor event, see if it detected a motion (increase, decrease etc...)
+     * See if the knob was rotated or pressed.
      * @param event of encoder device
      */
-    //% blockId=sensor_is_encoder_event_generate block="encoder|%event|was triggered"
+    //% blockId=sensor_is_encoder_event_generate block="knob|%event|was triggered"
     //% weight=98 blockGap=8
     //% advanced=true
-    export function wasEncoderTriggered(event: EncoderEvent): boolean
+    export function wasKnobTriggered(event: KnobEvent): boolean
     {
         let eventValue = event;
-        if(driver.addrBuffer[SensorType.Encoder] == 0)onEncoder(event, () => {});
+        if(driver.addrBuffer[SensorType.Encoder] == 0)onKnob(event, () => {});
         if(driver.lastStatus[SensorType.Encoder] == eventValue)return true;
         return false;
     }
 
     /**
-     * Get the color sensor event, see if it detected a motion (red, blue etc...)
+     * See if the color sensor detected a specific color.
      * @param event of color device
      */
     //% blockId=sensor_is_color_event_generate block="color|%event|was triggered"
@@ -274,33 +258,17 @@ namespace sensor
     }    
     
     /**
-     * Get the liner sensor event, see if it detected a motion (left, right etc...)
+     * See if the line follower recognized the position of the line underneath.
      * @param event of liner device
      */
-    //% blockId=sensor_is_liner_event_generate block="liner|%event|was triggered"
+    //% blockId=sensor_is_liner_event_generate block="line position|%event|was triggered"
     //% weight=96 blockGap=8
     //% advanced=true
-    export function wasLinerTriggered(event: LinerEvent): boolean
+    export function wasLinePositionTriggered(event: LinerEvent): boolean
     {
         let eventValue = event;
-        if(!initLiner)onLiner(event, () => {});
+        if(!initLiner)onLinePosition(event, () => {});
         if(lastLiner == eventValue)return true;
-        return false;
-    }
-    
-    /**
-     * Get the liner sensor value, see if it detected a motion (A, B etc...)
-     * @param type of liner device
-     */
-    //% blockId=sensor_is_liner_type_generate block="liner|%type|was triggered"
-    //% weight=95 blockGap=8
-    //% advanced=true
-    export function wasLinerTypeTriggered(type: LinerType): boolean
-    {
-        let data = 0;
-        driver.i2cSendByte(SensorType.Liner, 0x03);
-        data = driver.i2cReceiveByte(SensorType.Liner);
-        if(data & type)return true;
         return false;
     }
 }

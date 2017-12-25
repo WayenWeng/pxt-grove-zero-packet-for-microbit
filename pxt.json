@@ -11,8 +11,7 @@
         "README.md",
         "driver.ts",
         "sensor.ts",
-        "motor.ts",
-        "_locales/zh-cn/grove-zero-strings.json"
+        "motor.ts"
     ],
     "testFiles": [
         "test.ts"
