@@ -28,7 +28,9 @@ enum GestureEvent
     //% block=clockwise
     Clockwise = 7,
     //% block=anticlockwise
-    Anticlockwise = 8
+    Anticlockwise = 8,
+    //% block=wave
+    Wave = 9
 };
 
 enum KnobEvent
