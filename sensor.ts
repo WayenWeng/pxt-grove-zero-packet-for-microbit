@@ -45,7 +45,7 @@ enum KnobEvent
 
 enum ColorEvent
 {
-   //% block=black
+    //% block=black
 	Black = 1,
     //% block=r
     R = 2,

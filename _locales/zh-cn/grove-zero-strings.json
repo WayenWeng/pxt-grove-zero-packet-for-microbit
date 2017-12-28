@@ -50,7 +50,6 @@
   "sensor.wasKnobTriggered|block": "旋钮是|%event",
   "sensor.wasColorTriggered|block": "颜色是|%event",
   "sensor.wasLinePositionTriggered|block": "巡线位置是|%event",
-  "sensor.wasLinePositionTriggered|block": "巡线位置是|%event",
   "motor.moveServoTo|block": "舵机转到|%degree|(度)",
   "motor.setMotormoduleAction|block": "向|%direction|以|%speed|速运动",
   "motor.stopMotormodule|block": "停止",
